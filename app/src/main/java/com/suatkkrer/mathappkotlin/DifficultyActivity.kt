@@ -1,11 +1,17 @@
 package com.suatkkrer.mathappkotlin
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class DifficultyActivity : AppCompatActivity() {
+
+    var math: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_difficulty)
@@ -15,18 +21,42 @@ class DifficultyActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        val math = intent.getStringExtra("Math")
+        math = intent.getStringExtra("Math")
 
-        if (math.equals("Addition")) {
-            showLongToast("Addition")
-        } else if (math.equals("Subtraction")){
-            showLongToast("Subbbb")
-        }
 
     }
 
     fun showLongToast(msg: String?) {
         Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
+    }
+
+    fun Easy(view: View) {
+        val intent = Intent(this,TestActivity::class.java).apply {
+            putExtra("Difficulty","Easy")
+            putExtra("Operator",math)
+        }
+        startActivity(intent)
+    }
+    fun Medium(view: View) {
+        val intent = Intent(this,TestActivity::class.java).apply {
+            putExtra("Difficulty","Medium")
+            putExtra("Operator",math)
+        }
+        startActivity(intent)
+    }
+    fun Hard(view: View) {
+        val intent = Intent(this,TestActivity::class.java).apply {
+            putExtra("Difficulty","Hard")
+            putExtra("Operator",math)
+        }
+        startActivity(intent)
+    }
+    fun Expert(view: View) {
+        val intent = Intent(this,TestActivity::class.java).apply {
+            putExtra("Difficulty","Expert")
+            putExtra("Operator",math)
+        }
+        startActivity(intent)
     }
 
 }

@@ -11,6 +11,7 @@
 
     <Button
         android:id="@+id/easy"
+        android:onClick="Easy"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
         android:layout_marginTop="100dp"
@@ -24,6 +25,7 @@
 
     <Button
         android:id="@+id/medium"
+        android:onClick="Medium"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
         android:text="Medium"
@@ -37,6 +39,7 @@
 
     <Button
         android:id="@+id/hard"
+        android:onClick="Hard"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
         android:layout_marginTop="60dp"
@@ -50,6 +53,7 @@
 
     <Button
         android:id="@+id/expert"
+        android:onClick="Expert"
         android:textSize="20dp"
         android:text="Expert"
         android:layout_marginTop="60dp"
