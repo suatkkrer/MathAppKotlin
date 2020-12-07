@@ -15,14 +15,12 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
-
     }
 
     fun Addition(view: View) {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
-            putExtra("Addition","Addition")
+            putExtra("Math","Addition")
         }
         startActivity(intent)
     }
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     fun Subtraction(view: View) {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
-            putExtra("Subtraction","Subtraction")
+            putExtra("Math","Subtraction")
         }
         startActivity(intent)
     }
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     fun Multiplication(view: View) {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
-            putExtra("Multiplication","Multiplication")
+            putExtra("Math","Multiplication")
         }
         startActivity(intent)
     }
@@ -49,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     fun Division(view: View) {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
-            putExtra("Division","Division")
+            putExtra("Math","Division")
         }
         startActivity(intent)
     }
@@ -58,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     fun Mixed(view: View) {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
-            putExtra("Mixed","Mixed")
+            putExtra("Math","Mixed")
         }
         startActivity(intent)
     }
