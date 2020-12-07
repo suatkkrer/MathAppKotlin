@@ -5,56 +5,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_weight="6"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/Addition"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="60dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="Addition"
+        android:onClick="Addition"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="120dp"
         />
 
     <Button
         android:id="@+id/Subtraction"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:onClick="Subtraction"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:text="Subtraction"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
         />
 
     <Button
         android:id="@+id/Multiplication"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:onClick="Multiplication"
         android:text="Multiplication"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 
     <Button
         android:id="@+id/Division"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:onClick="Division"
+        android:layout_width="match_parent"
         android:text="Division"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 
     <Button
         android:id="@+id/Mixed"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:onClick="Mixed"
+        android:layout_width="match_parent"
         android:text="Mixed"
         android:textAllCaps="false"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginTop="40dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
+
+    <Button
+        android:id="@+id/quiz"
+        android:text="Quiz"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="60dp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+
 
 </LinearLayout>
