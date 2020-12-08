@@ -47,308 +47,178 @@ class TestActivity : AppCompatActivity() {
 
         randomMethod()
 
-
     }
 
     private fun randomMethod(){
+
         if (difficult.equals("Easy")){
-            if(math.equals("Addition")){
-                var firstNumber = (2..100).random()
-                var secondNumber = (2..100).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Multiplication")){
-                var firstNumber = (2..10).random()
-                var secondNumber = (2..10).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Division")){
-                while (true) {
-                    var firstNumber = (2..100).random()
-                    var secondNumber = (2..100).random()
-                    if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
-                        break
-                    }
-                }
-            }
-            if (math.equals("Subtraction")) {
-                var firstNumber = (2..100).random()
-                var secondNumber = (2..100).random()
-                if (firstNumber < secondNumber){
-                number1.text = secondNumber.toString()
-                number2.text = firstNumber.toString()
-               } else {
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-             }
-            }
+
+            if(math.equals("Addition"))
+            additionRandom(2,100)
+
+            if (math.equals("Subtraction"))
+            subtractionRandom(2,100)
+
+            if (math.equals("Multiplication"))
+            multiplicationRandom(2,10)
+
+            if (math.equals("Division"))
+            divisionRandom(21,100,2,20)
+
             if (math.equals("Mixed")){
                 when(randomImage){
                     0 -> {
-                        var firstNumber = (2..100).random()
-                        var secondNumber = (2..100).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        additionRandom(2,100)
                     }
                     1 -> {
-                        var firstNumber = (2..100).random()
-                        var secondNumber = (2..100).random()
-                        if (firstNumber < secondNumber){
-                            number1.text = secondNumber.toString()
-                            number2.text = firstNumber.toString()
-                        } else {
-                            number1.text = firstNumber.toString()
-                            number2.text = secondNumber.toString()
-                        }
+                        subtractionRandom(2,100)
                     }
                     2 -> {
-                        var firstNumber = (2..10).random()
-                        var secondNumber = (2..10).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        multiplicationRandom(2,10)
                     }
                     3 -> {
-                        while (true) {
-                            var firstNumber = (2..100).random()
-                            var secondNumber = (2..100).random()
-                            if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                                number1.text = firstNumber.toString()
-                                number2.text = secondNumber.toString()
-                                break
-                            }
-                        }
+                        divisionRandom(21,100,2,20)
                     }
                 }
             }
 
         } else if (difficult.equals("Medium")){
-            if(math.equals("Addition")){
-                var firstNumber = (100..500).random()
-                var secondNumber = (100..500).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Multiplication")){
-                val firstNumber = (2..50).random()
-                val secondNumber = (2..50).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Division")){
-                while (true) {
-                    var firstNumber = (100..500).random()
-                    var secondNumber = (100..500).random()
-                    if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
-                        break
-                    }
-                }
-            }
-            if (math.equals("Subtraction")) {
-                var firstNumber = (100..500).random()
-                var secondNumber = (100..500).random()
-                if (firstNumber < secondNumber) {
-                    number1.text = secondNumber.toString()
-                    number2.text = firstNumber.toString()
-                } else {
-                    number1.text = firstNumber.toString()
-                    number2.text = secondNumber.toString()
-                }
-            }
+
+            if(math.equals("Addition"))
+            additionRandom(100,500)
+
+            if (math.equals("Subtraction"))
+            subtractionRandom(100,500)
+
+            if (math.equals("Multiplication"))
+            multiplicationRandom(2,50)
+
+            if (math.equals("Division"))
+            divisionRandom(201,500,50,200)
+
             if (math.equals("Mixed")){
                 when(randomImage){
                     0 -> {
-                        var firstNumber = (100..500).random()
-                        var secondNumber = (100..500).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        additionRandom(100,500)
                     }
                     1 -> {
-                        var firstNumber = (100..500).random()
-                        var secondNumber = (100..500).random()
-                        if (firstNumber < secondNumber) {
-                            number1.text = secondNumber.toString()
-                            number2.text = firstNumber.toString()
-                        } else {
-                            number1.text = firstNumber.toString()
-                            number2.text = secondNumber.toString()
-                        }
+                        subtractionRandom(100,500)
                     }
                     2 -> {
-                        val firstNumber = (2..50).random()
-                        val secondNumber = (2..50).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        multiplicationRandom(2,50)
                     }
                     3 -> {
-                        while (true) {
-                            var firstNumber = (100..500).random()
-                            var secondNumber = (100..500).random()
-                            if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                                number1.text = firstNumber.toString()
-                                number2.text = secondNumber.toString()
-                                break
-                            }
-                        }
+                        divisionRandom(201,500,50,200)
                     }
                 }
             }
         } else if (difficult.equals("Hard")){
-            if(math.equals("Addition")){
-                var firstNumber = (500..2000).random()
-                var secondNumber = (500..2000).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Multiplication")){
-                var firstNumber = (10..150).random()
-                var secondNumber = (10..150).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Division")){
-                while (true) {
-                    var firstNumber = (500..2000).random()
-                    var secondNumber = (500..2000).random()
-                    if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
-                        break
-                    }
-                }
-            }
-            if (math.equals("Subtraction")) {
-                var firstNumber = (500..2000).random()
-                var secondNumber = (500..2000).random()
-                if (firstNumber < secondNumber) {
-                    number1.text = secondNumber.toString()
-                    number2.text = firstNumber.toString()
-                } else {
-                    number1.text = firstNumber.toString()
-                    number2.text = secondNumber.toString()
-                }
-            }
+
+            if(math.equals("Addition"))
+            additionRandom(500,2000)
+
+            if (math.equals("Subtraction"))
+            subtractionRandom(500,2000)
+
+            if (math.equals("Multiplication"))
+            multiplicationRandom(10,150)
+
+            if (math.equals("Division"))
+            divisionRandom(501,2000,2,500)
+
             if (math.equals("Mixed")){
                 when(randomImage){
                     0 -> {
-                        var firstNumber = (500..2000).random()
-                        var secondNumber = (500..2000).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        additionRandom(500,2000)
                     }
                     1 -> {
-                        var firstNumber = (500..2000).random()
-                        var secondNumber = (500..2000).random()
-                        if (firstNumber < secondNumber) {
-                            number1.text = secondNumber.toString()
-                            number2.text = firstNumber.toString()
-                        } else {
-                            number1.text = firstNumber.toString()
-                            number2.text = secondNumber.toString()
-                        }
+                        subtractionRandom(500,2000)
                     }
                     2 -> {
-                        var firstNumber = (10..150).random()
-                        var secondNumber = (10..150).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        multiplicationRandom(10,150)
                     }
                     3 -> {
-                        while (true) {
-                            var firstNumber = (500..2000).random()
-                            var secondNumber = (500..2000).random()
-                            if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                                number1.text = firstNumber.toString()
-                                number2.text = secondNumber.toString()
-                                break
-                            }
-                        }
+                        divisionRandom(501,2000,2,500)
                     }
                 }
             }
         } else if (difficult.equals("Expert")){
 
-            if(math.equals("Addition")){
-                var firstNumber = (2000..50000).random()
-                var secondNumber = (2000..50000).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
-            if (math.equals("Multiplication")){
-                var firstNumber = (100..1000).random()
-                var secondNumber = (100..1000).random()
-                number1.text = firstNumber.toString()
-                number2.text = secondNumber.toString()
-            }
+            if(math.equals("Addition"))
+            additionRandom(2000,50000)
 
-            if (math.equals("Division")){
-                while (true) {
-                    var firstNumber = (200..50000).random()
-                    var secondNumber = (200..50000).random()
-                    if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
-                        break
-                    }
-                }
-            }
-            if (math.equals("Subtraction")) {
-                var firstNumber = (2000..50000).random()
-                var secondNumber = (2000..50000).random()
-                if (firstNumber < secondNumber) {
-                    number1.text = secondNumber.toString()
-                    number2.text = firstNumber.toString()
-                } else {
-                    number1.text = firstNumber.toString()
-                    number2.text = secondNumber.toString()
-                }
-            }
+            if (math.equals("Subtraction"))
+            subtractionRandom(2000,50000)
+
+            if (math.equals("Multiplication"))
+            multiplicationRandom(100,1000)
+
+            if (math.equals("Division"))
+            divisionRandom(201,50000,2,200)
+
             if (math.equals("Mixed")){
                 when(randomImage){
                     0 -> {
-                        var firstNumber = (2000..50000).random()
-                        var secondNumber = (2000..50000).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        additionRandom(2000,50000)
                     }
                     1 -> {
-                        var firstNumber = (2000..50000).random()
-                        var secondNumber = (2000..50000).random()
-                        if (firstNumber < secondNumber) {
-                            number1.text = secondNumber.toString()
-                            number2.text = firstNumber.toString()
-                        } else {
-                            number1.text = firstNumber.toString()
-                            number2.text = secondNumber.toString()
-                        }
+                        subtractionRandom(2000,50000)
                     }
                     2 -> {
-                        var firstNumber = (100..1000).random()
-                        var secondNumber = (100..1000).random()
-                        number1.text = firstNumber.toString()
-                        number2.text = secondNumber.toString()
+                        multiplicationRandom(100,1000)
                     }
                     3 -> {
-                        while (true) {
-                            var firstNumber = (200..50000).random()
-                            var secondNumber = (200..50000).random()
-                            if (firstNumber > secondNumber && firstNumber % secondNumber == 0) {
-                                number1.text = firstNumber.toString()
-                                number2.text = secondNumber.toString()
-                                break
-                            }
-                        }
+                        divisionRandom(201,50000,2,200)
                     }
                 }
             }
         }
     }
 
+    fun additionRandom(numberFirst : Int, numberSecond : Int){
+
+            var firstNumber = (numberFirst..numberSecond).random()
+            var secondNumber = (numberFirst..numberSecond).random()
+            number1.text = firstNumber.toString()
+            number2.text = secondNumber.toString()
+    }
+
+    private fun subtractionRandom(numberFirst : Int, numberSecond : Int){
+
+            var firstNumber = (numberFirst..numberSecond).random()
+            var secondNumber = (numberFirst..numberSecond).random()
+            if (firstNumber > secondNumber){
+                number1.text = firstNumber.toString()
+                number2.text = secondNumber.toString()
+            } else {
+                number1.text = secondNumber.toString()
+                number2.text = firstNumber.toString()
+            }
+    }
+
+    fun multiplicationRandom(numberFirst : Int, numberSecond : Int){
+        var firstNumber = (numberFirst..numberSecond).random()
+        var secondNumber = (numberFirst..numberSecond).random()
+        number1.text = firstNumber.toString()
+        number2.text = secondNumber.toString()
+
+    }
+
+    fun divisionRandom(numberFirst : Int, numberSecond : Int,numberThird : Int,numberFourth : Int){
+
+            var firstNumber = (numberFirst..numberSecond).random()
+            var secondNumber = (numberThird..numberFourth).random()
+            while (firstNumber % secondNumber != 0) {
+                firstNumber = (numberFirst..numberSecond).random()
+                secondNumber = (numberThird..numberFourth).random()
+            }
+            number1.text = firstNumber.toString()
+            number2.text = secondNumber.toString()
+    }
+
+    fun btn0(view: View) {
+        numberText.append("0")
+    }
     fun btn1(view: View) {
         numberText.append("1")
     }
@@ -376,129 +246,130 @@ class TestActivity : AppCompatActivity() {
     fun btn9(view: View) {
         numberText.append("9")
     }
+
     fun btnBack(view: View) {
         var textString = numberText.text.toString()
         if (textString.isNotEmpty()){
             numberText.text = textString.substring(0, textString.length - 1).toEditable()
         }
     }
-    fun btn0(view: View) {
-        numberText.append("0")
-    }
+
     fun btnDone(view: View) {
-        when {
-            math.equals("Addition") -> {
+        if (numberText.text.toString() != "") {
+            when {
+                math.equals("Addition") -> {
 
-                val numberFirst = Integer.parseInt(number1.text.toString())
-                val numberSecond = Integer.parseInt(number2.text.toString())
-                val totalNumber = Integer.parseInt(numberText.text.toString())
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
 
-                if ((numberFirst + numberSecond) == totalNumber){
-                    randomMethod()
-                    numberText.text = ""
-                } else {
-                    showLongToast("Yanlis")
-                }
-
-            }
-            math.equals("Subtraction") -> {
-
-                val numberFirst = Integer.parseInt(number1.text.toString())
-                val numberSecond = Integer.parseInt(number2.text.toString())
-                val totalNumber = Integer.parseInt(numberText.text.toString())
-
-                if ((numberFirst - numberSecond) == totalNumber){
-                    randomMethod()
-                    numberText.text = ""
-                } else {
-                    showLongToast("Yanlis")
-                }
-
-            }
-            math.equals("Multiplication") -> {
-
-                val numberFirst = Integer.parseInt(number1.text.toString())
-                val numberSecond = Integer.parseInt(number2.text.toString())
-                val totalNumber = Integer.parseInt(numberText.text.toString())
-
-                if ((numberFirst * numberSecond) == totalNumber){
-                    randomMethod()
-                    numberText.text = ""
-                } else {
-                    showLongToast("Yanlis")
-                }
-
-            }
-            math.equals("Division") -> {
-
-                val numberFirst = Integer.parseInt(number1.text.toString())
-                val numberSecond = Integer.parseInt(number2.text.toString())
-                val totalNumber = Integer.parseInt(numberText.text.toString())
-
-                if ((numberFirst / numberSecond) == totalNumber){
-                    randomMethod()
-                    numberText.text = ""
-                } else {
-                    showLongToast("Yanlis")
-                }
-            }
-            math.equals("Mixed") -> {
-
-                when (randomImage) {
-                    0 -> {
-                        val numberFirst = Integer.parseInt(number1.text.toString())
-                        val numberSecond = Integer.parseInt(number2.text.toString())
-                        val totalNumber = Integer.parseInt(numberText.text.toString())
-
-                        if ((numberFirst + numberSecond) == totalNumber){
-                            randomMethod()
-                            randomImage = (0..3).random()
-                            operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
-                            numberText.text = ""
-                        } else {
-                            showLongToast("Yanlis")
-                        }
+                    if ((numberFirst + numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
                     }
-                    1 -> {
-                        val numberFirst = Integer.parseInt(number1.text.toString())
-                        val numberSecond = Integer.parseInt(number2.text.toString())
-                        val totalNumber = Integer.parseInt(numberText.text.toString())
 
-                        if ((numberFirst - numberSecond) == totalNumber){
-                            randomMethod()
-                            randomImage = (0..3).random()
-                            operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
-                            numberText.text = ""
-                        } else {
-                            showLongToast("Yanlis")
-                        }
+                }
+                math.equals("Subtraction") -> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst - numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
                     }
-                    2 -> {
-                        val numberFirst = Integer.parseInt(number1.text.toString())
-                        val numberSecond = Integer.parseInt(number2.text.toString())
-                        val totalNumber = Integer.parseInt(numberText.text.toString())
 
-                        if ((numberFirst * numberSecond) == totalNumber){
-                            randomMethod()
-                            randomImage = (0..3).random()
-                            operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
-                            numberText.text = ""
-                        } else {
-                            showLongToast("Yanlis")
-                        }
+                }
+                math.equals("Multiplication") -> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst * numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
                     }
-                    3 -> {
-                        val numberFirst = Integer.parseInt(number1.text.toString())
-                        val numberSecond = Integer.parseInt(number2.text.toString())
-                        val totalNumber = Integer.parseInt(numberText.text.toString())
 
-                        if ((numberFirst / numberSecond) == totalNumber){
-                            randomMethod()
-                            randomImage = (0..3).random()
-                            operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
-                            numberText.text = ""
-                        } else {
-                            showLongToast("Yanlis")
+                }
+                math.equals("Division") -> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst / numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
+                    }
+                }
+                math.equals("Mixed") -> {
+
+                    when (randomImage) {
+                        0 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst + numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                            }
+                        }
+                        1 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst - numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                            }
+                        }
+                        2 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst * numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                            }
+                        }
+                        3 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst / numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                            }
                         }
                     }
                 }
