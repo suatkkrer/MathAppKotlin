@@ -193,6 +193,7 @@ class TestActivity : AppCompatActivity() {
             } else {
                 number1.text = secondNumber.toString()
                 number2.text = firstNumber.toString()
+
             }
     }
 
