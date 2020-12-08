@@ -214,6 +214,7 @@ class TestActivity : AppCompatActivity() {
             }
             number1.text = firstNumber.toString()
             number2.text = secondNumber.toString()
+
     }
 
     fun btn0(view: View) {
