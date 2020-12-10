@@ -394,4 +394,17 @@ class TestActivity : AppCompatActivity() {
 
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
+    fun Skip(view: View) {
+        if (math.equals("Mixed")){
+
+            randomImage = (0..3).random()
+            operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+
+        }
+
+        randomMethod()
+
+        numberText.text = ""
+    }
+
 }
