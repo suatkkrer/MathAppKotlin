@@ -36,6 +36,7 @@ class DifficultyActivity : AppCompatActivity() {
             putExtra("Operator",math)
         }
         startActivity(intent)
+        finish()
     }
     fun Medium(view: View) {
         val intent = Intent(this,TestActivity::class.java).apply {
@@ -43,6 +44,7 @@ class DifficultyActivity : AppCompatActivity() {
             putExtra("Operator",math)
         }
         startActivity(intent)
+        finish()
     }
     fun Hard(view: View) {
         val intent = Intent(this,TestActivity::class.java).apply {
@@ -50,6 +52,7 @@ class DifficultyActivity : AppCompatActivity() {
             putExtra("Operator",math)
         }
         startActivity(intent)
+        finish()
     }
     fun Expert(view: View) {
         val intent = Intent(this,TestActivity::class.java).apply {
@@ -57,6 +60,7 @@ class DifficultyActivity : AppCompatActivity() {
             putExtra("Operator",math)
         }
         startActivity(intent)
+        finish()
     }
 
 }

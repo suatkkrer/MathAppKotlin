@@ -1,5 +1,6 @@
 package com.suatkkrer.mathappkotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -15,6 +16,8 @@ class TestActivity : AppCompatActivity() {
 
     private var math : String? = null
     private var difficult : String? = null
+    private var operation : String? = null
+    private var diff : String? = null
     private val randOperator = arrayOf(R.drawable.ic_baseline_add_24,R.drawable.ic_baseline_remove_24,R.drawable.ic_baseline_clear_24,R.drawable.divide)
     private var randomImage = (0..3).random()
 
@@ -27,10 +30,17 @@ class TestActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        setSupportActionBar(toolbar)
+
         closeKeyboard()
 
         math = intent.getStringExtra("Operator")
         difficult = intent.getStringExtra("Difficulty")
+        operation = intent.getStringExtra("Operation")
+        diff = intent.getStringExtra("Diff")
+
+        Log.e("Operation", operation.toString())
+        Log.e("Diff", diff.toString())
 
 
         if (math.equals("Addition")){
@@ -405,6 +415,18 @@ class TestActivity : AppCompatActivity() {
         randomMethod()
 
         numberText.text = ""
+    }
+
+    fun Back(view: View) {
+        if (diff != null){
+            val intent = Intent(this,QuizActivity::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this,DifficultyActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
 }
