@@ -2,6 +2,7 @@ package com.suatkkrer.mathappkotlin
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Vibrator
 import android.text.Editable
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_test.*
+import java.util.*
 
 class TestActivity : AppCompatActivity() {
 
@@ -18,6 +20,9 @@ class TestActivity : AppCompatActivity() {
     private var difficult : String? = null
     private var operation : String? = null
     private var diff : String? = null
+    private var vibrator: Vibrator? = null
+    var t = Timer()
+    var tt: TimerTask? = null
     private val randOperator = arrayOf(R.drawable.ic_baseline_add_24,R.drawable.ic_baseline_remove_24,R.drawable.ic_baseline_clear_24,R.drawable.divide)
     private var randomImage = (0..3).random()
 
@@ -32,7 +37,7 @@ class TestActivity : AppCompatActivity() {
 
         setSupportActionBar(toolbar)
 
-        closeKeyboard()
+        vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
 
         math = intent.getStringExtra("Operator")
         difficult = intent.getStringExtra("Difficulty")
@@ -42,40 +47,81 @@ class TestActivity : AppCompatActivity() {
         Log.e("Operation", operation.toString())
         Log.e("Diff", diff.toString())
 
-
-        if (math.equals("Addition")){
-            operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_add_24))
-        } else if (math.equals("Subtraction")){
-            operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_remove_24))
-        } else if (math.equals("Multiplication")){
-            operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_clear_24))
-        } else if (math.equals("Division")){
-            operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.divide))
-        } else if (math.equals("Mixed")) {
-            operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
+        if (math != null){
+            when {
+                math.equals("Addition") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_add_24))
+                }
+                math.equals("Subtraction") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_remove_24))
+                }
+                math.equals("Multiplication") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_clear_24))
+                }
+                math.equals("Division") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.divide))
+                }
+                math.equals("Mixed") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
+                }
+            }
         }
 
+        if (operation != null){
+            when {
+                operation.equals("add") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_add_24))
+                }
+                operation.equals("sub") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_remove_24))
+                }
+                operation.equals("multiply") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_clear_24))
+                }
+                operation.equals("division") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.divide))
+                }
+                operation.equals("mixed") -> {
+                    operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
+                }
+            }
+        }
+
+
         randomMethod()
+
+        var counter : Int = 0
+
+        t = Timer()
+        tt = object : TimerTask(){
+            override fun run() {
+                counter++
+                progressBar.progress = counter
+
+            }
+
+        }
+        t.schedule(tt,0,100)
 
     }
 
     private fun randomMethod(){
 
-        if (difficult.equals("Easy")){
+        if (difficult.equals("Easy") || diff.equals("easy")){
 
-            if(math.equals("Addition"))
+            if(math.equals("Addition") || operation.equals("add"))
             additionRandom(2,100)
 
-            if (math.equals("Subtraction"))
+            if (math.equals("Subtraction") || operation.equals("sub"))
             subtractionRandom(2,100)
 
-            if (math.equals("Multiplication"))
+            if (math.equals("Multiplication") || operation.equals("multiply"))
             multiplicationRandom(2,10)
 
-            if (math.equals("Division"))
+            if (math.equals("Division") || operation.equals("division"))
             divisionRandom(21,100,2,20)
 
-            if (math.equals("Mixed")){
+            if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
                         additionRandom(2,100)
@@ -92,21 +138,21 @@ class TestActivity : AppCompatActivity() {
                 }
             }
 
-        } else if (difficult.equals("Medium")){
+        } else if (difficult.equals("Medium") || diff.equals("medium")){
 
-            if(math.equals("Addition"))
+            if(math.equals("Addition") || operation.equals("add"))
             additionRandom(100,500)
 
-            if (math.equals("Subtraction"))
+            if (math.equals("Subtraction") || operation.equals("sub"))
             subtractionRandom(100,500)
 
-            if (math.equals("Multiplication"))
+            if (math.equals("Multiplication") || operation.equals("multiply"))
             multiplicationRandom(2,50)
 
-            if (math.equals("Division"))
+            if (math.equals("Division") || operation.equals("division"))
             divisionRandom(201,500,50,200)
 
-            if (math.equals("Mixed")){
+            if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
                         additionRandom(100,500)
@@ -122,21 +168,21 @@ class TestActivity : AppCompatActivity() {
                     }
                 }
             }
-        } else if (difficult.equals("Hard")){
+        } else if (difficult.equals("Hard") || diff.equals("hard")){
 
-            if(math.equals("Addition"))
+            if(math.equals("Addition") || operation.equals("add"))
             additionRandom(500,2000)
 
-            if (math.equals("Subtraction"))
+            if (math.equals("Subtraction") || operation.equals("sub"))
             subtractionRandom(500,2000)
 
-            if (math.equals("Multiplication"))
+            if (math.equals("Multiplication") || operation.equals("multiply"))
             multiplicationRandom(10,150)
 
-            if (math.equals("Division"))
+            if (math.equals("Division") || operation.equals("division"))
             divisionRandom(501,2000,2,500)
 
-            if (math.equals("Mixed")){
+            if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
                         additionRandom(500,2000)
@@ -152,21 +198,21 @@ class TestActivity : AppCompatActivity() {
                     }
                 }
             }
-        } else if (difficult.equals("Expert")){
+        } else if (difficult.equals("Expert") || diff.equals("expert")){
 
-            if(math.equals("Addition"))
+            if(math.equals("Addition") || operation.equals("add"))
             additionRandom(2000,50000)
 
-            if (math.equals("Subtraction"))
+            if (math.equals("Subtraction") || operation.equals("sub"))
             subtractionRandom(2000,50000)
 
-            if (math.equals("Multiplication"))
+            if (math.equals("Multiplication") || operation.equals("multiply"))
             multiplicationRandom(100,1000)
 
-            if (math.equals("Division"))
+            if (math.equals("Division") || operation.equals("division"))
             divisionRandom(201,50000,2,200)
 
-            if (math.equals("Mixed")){
+            if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
                         additionRandom(2000,50000)
@@ -267,7 +313,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     fun btnDone(view: View) {
-        if (numberText.text.toString() != "") {
+        if (numberText.text.toString() != "" && math != null) {
             when {
                 math.equals("Addition") -> {
 
@@ -280,6 +326,7 @@ class TestActivity : AppCompatActivity() {
                         numberText.text = ""
                     } else {
                         showLongToast("Yanlis")
+                        vibrator!!.vibrate(100)
                     }
 
                 }
@@ -294,6 +341,7 @@ class TestActivity : AppCompatActivity() {
                         numberText.text = ""
                     } else {
                         showLongToast("Yanlis")
+                        vibrator!!.vibrate(100)
                     }
 
                 }
@@ -308,6 +356,8 @@ class TestActivity : AppCompatActivity() {
                         numberText.text = ""
                     } else {
                         showLongToast("Yanlis")
+                        vibrator!!.vibrate(100)
+
                     }
 
                 }
@@ -322,6 +372,8 @@ class TestActivity : AppCompatActivity() {
                         numberText.text = ""
                     } else {
                         showLongToast("Yanlis")
+                        vibrator!!.vibrate(100)
+
                     }
                 }
                 math.equals("Mixed") -> {
@@ -339,6 +391,8 @@ class TestActivity : AppCompatActivity() {
                                 numberText.text = ""
                             } else {
                                 showLongToast("Yanlis")
+                                vibrator!!.vibrate(100)
+
                             }
                         }
                         1 -> {
@@ -353,6 +407,8 @@ class TestActivity : AppCompatActivity() {
                                 numberText.text = ""
                             } else {
                                 showLongToast("Yanlis")
+                                vibrator!!.vibrate(100)
+
                             }
                         }
                         2 -> {
@@ -367,6 +423,8 @@ class TestActivity : AppCompatActivity() {
                                 numberText.text = ""
                             } else {
                                 showLongToast("Yanlis")
+                                vibrator!!.vibrate(100)
+
                             }
                         }
                         3 -> {
@@ -381,6 +439,142 @@ class TestActivity : AppCompatActivity() {
                                 numberText.text = ""
                             } else {
                                 showLongToast("Yanlis")
+                                vibrator!!.vibrate(100)
+
+                            }
+                        }
+                    }
+                }
+            }
+        } else if (numberText.text.toString() != "" && operation != null) {
+
+            when {
+                operation.equals("add") -> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst + numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
+                        vibrator!!.vibrate(1000)
+                    }
+
+                }
+                operation.equals("sub")-> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst - numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
+                        vibrator!!.vibrate(1000)
+                    }
+
+                }
+                operation.equals("multiply")-> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst * numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
+                        vibrator!!.vibrate(1000)
+
+                    }
+
+                }
+                operation.equals("division")-> {
+
+                    val numberFirst = Integer.parseInt(number1.text.toString())
+                    val numberSecond = Integer.parseInt(number2.text.toString())
+                    val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                    if ((numberFirst / numberSecond) == totalNumber) {
+                        randomMethod()
+                        numberText.text = ""
+                    } else {
+                        showLongToast("Yanlis")
+                        vibrator!!.vibrate(1000)
+
+                    }
+                }
+                operation.equals("mixed") -> {
+
+                    when (randomImage) {
+                        0 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst + numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                                vibrator!!.vibrate(1000)
+
+                            }
+                        }
+                        1 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst - numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                                vibrator!!.vibrate(1000)
+
+                            }
+                        }
+                        2 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst * numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                                vibrator!!.vibrate(1000)
+
+                            }
+                        }
+                        3 -> {
+                            val numberFirst = Integer.parseInt(number1.text.toString())
+                            val numberSecond = Integer.parseInt(number2.text.toString())
+                            val totalNumber = Integer.parseInt(numberText.text.toString())
+
+                            if ((numberFirst / numberSecond) == totalNumber) {
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                randomMethod()
+                                numberText.text = ""
+                            } else {
+                                showLongToast("Yanlis")
+                                vibrator!!.vibrate(1000)
+
                             }
                         }
                     }
