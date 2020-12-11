@@ -293,6 +293,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="75dp"
         android:layout_height="75dp"
+        android:visibility="invisible"
         android:indeterminate="false"
         android:progressDrawable="@drawable/circle_progressbar"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"

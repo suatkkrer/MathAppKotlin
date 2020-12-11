@@ -1,5 +1,7 @@
 package com.suatkkrer.mathappkotlin
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Vibrator
@@ -7,12 +9,14 @@ import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_test.*
 import java.util.*
+
 
 class TestActivity : AppCompatActivity() {
 
@@ -23,7 +27,8 @@ class TestActivity : AppCompatActivity() {
     private var vibrator: Vibrator? = null
     var t = Timer()
     var tt: TimerTask? = null
-    private val randOperator = arrayOf(R.drawable.ic_baseline_add_24,R.drawable.ic_baseline_remove_24,R.drawable.ic_baseline_clear_24,R.drawable.divide)
+    var animation : ObjectAnimator? = null
+    private val randOperator = arrayOf(R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_remove_24, R.drawable.ic_baseline_clear_24, R.drawable.divide)
     private var randomImage = (0..3).random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +36,8 @@ class TestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_test)
 
         this.window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
         setSupportActionBar(toolbar)
@@ -50,19 +55,19 @@ class TestActivity : AppCompatActivity() {
         if (math != null){
             when {
                 math.equals("Addition") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_add_24))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_add_24))
                 }
                 math.equals("Subtraction") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_remove_24))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_remove_24))
                 }
                 math.equals("Multiplication") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_clear_24))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_clear_24))
                 }
                 math.equals("Division") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.divide))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.divide))
                 }
                 math.equals("Mixed") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                 }
             }
         }
@@ -70,19 +75,19 @@ class TestActivity : AppCompatActivity() {
         if (operation != null){
             when {
                 operation.equals("add") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_add_24))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_add_24))
                 }
                 operation.equals("sub") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_remove_24))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_remove_24))
                 }
                 operation.equals("multiply") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_baseline_clear_24))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_clear_24))
                 }
                 operation.equals("division") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.divide))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.divide))
                 }
                 operation.equals("mixed") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this,randOperator[randomImage]))
+                    operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                 }
             }
         }
@@ -90,18 +95,63 @@ class TestActivity : AppCompatActivity() {
 
         randomMethod()
 
-        var counter : Int = 0
+        if (operation != null) {
 
-        t = Timer()
-        tt = object : TimerTask(){
-            override fun run() {
-                counter++
-                progressBar.progress = counter
+            progressBar.visibility = View.VISIBLE
 
-            }
+            var question: Int = 0
 
+            animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100)
+            animation!!.duration = 15000
+            animation!!.interpolator = DecelerateInterpolator()
+            animation!!.addListener(object : Animator.AnimatorListener {
+
+                override fun onAnimationStart(animator: Animator) {
+
+                }
+
+                override fun onAnimationEnd(animator: Animator) {
+                    question++
+                    Log.e("question", question.toString())
+                    if (question != 10) {
+                        randomMethod()
+                        animation!!.start()
+                        numberText.text = ""
+                    } else {
+                        progressBar.visibility = View.INVISIBLE
+                        val intent1 = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent1)
+                    }
+                }
+
+                override fun onAnimationCancel(animator: Animator) {
+
+                }
+
+                override fun onAnimationRepeat(animator: Animator) {
+
+                }
+            })
+            animation!!.start()
         }
-        t.schedule(tt,0,100)
+
+//        var counter : Int = 0
+//        var question : Int = 0
+//
+//        t = Timer()
+//        tt = object : TimerTask(){
+//            override fun run() {
+//                counter++
+//                progressBar.progress = counter
+//                if (counter == 100){
+//                    question++
+//                    counter = 0
+//                    randomMethod()
+//                }
+//            }
+//        }
+//        t.schedule(tt, 0, 100)
+//        Log.e("Question", question.toString())
 
     }
 
@@ -110,30 +160,30 @@ class TestActivity : AppCompatActivity() {
         if (difficult.equals("Easy") || diff.equals("easy")){
 
             if(math.equals("Addition") || operation.equals("add"))
-            additionRandom(2,100)
+            additionRandom(2, 100)
 
             if (math.equals("Subtraction") || operation.equals("sub"))
-            subtractionRandom(2,100)
+            subtractionRandom(2, 100)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
-            multiplicationRandom(2,10)
+            multiplicationRandom(2, 10)
 
             if (math.equals("Division") || operation.equals("division"))
-            divisionRandom(21,100,2,20)
+            divisionRandom(21, 100, 2, 20)
 
             if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
-                        additionRandom(2,100)
+                        additionRandom(2, 100)
                     }
                     1 -> {
-                        subtractionRandom(2,100)
+                        subtractionRandom(2, 100)
                     }
                     2 -> {
-                        multiplicationRandom(2,10)
+                        multiplicationRandom(2, 10)
                     }
                     3 -> {
-                        divisionRandom(21,100,2,20)
+                        divisionRandom(21, 100, 2, 20)
                     }
                 }
             }
@@ -141,97 +191,97 @@ class TestActivity : AppCompatActivity() {
         } else if (difficult.equals("Medium") || diff.equals("medium")){
 
             if(math.equals("Addition") || operation.equals("add"))
-            additionRandom(100,500)
+            additionRandom(100, 500)
 
             if (math.equals("Subtraction") || operation.equals("sub"))
-            subtractionRandom(100,500)
+            subtractionRandom(100, 500)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
-            multiplicationRandom(2,50)
+            multiplicationRandom(2, 50)
 
             if (math.equals("Division") || operation.equals("division"))
-            divisionRandom(201,500,50,200)
+            divisionRandom(201, 500, 50, 200)
 
             if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
-                        additionRandom(100,500)
+                        additionRandom(100, 500)
                     }
                     1 -> {
-                        subtractionRandom(100,500)
+                        subtractionRandom(100, 500)
                     }
                     2 -> {
-                        multiplicationRandom(2,50)
+                        multiplicationRandom(2, 50)
                     }
                     3 -> {
-                        divisionRandom(201,500,50,200)
+                        divisionRandom(201, 500, 50, 200)
                     }
                 }
             }
         } else if (difficult.equals("Hard") || diff.equals("hard")){
 
             if(math.equals("Addition") || operation.equals("add"))
-            additionRandom(500,2000)
+            additionRandom(500, 2000)
 
             if (math.equals("Subtraction") || operation.equals("sub"))
-            subtractionRandom(500,2000)
+            subtractionRandom(500, 2000)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
-            multiplicationRandom(10,150)
+            multiplicationRandom(10, 150)
 
             if (math.equals("Division") || operation.equals("division"))
-            divisionRandom(501,2000,2,500)
+            divisionRandom(501, 2000, 2, 500)
 
             if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
-                        additionRandom(500,2000)
+                        additionRandom(500, 2000)
                     }
                     1 -> {
-                        subtractionRandom(500,2000)
+                        subtractionRandom(500, 2000)
                     }
                     2 -> {
-                        multiplicationRandom(10,150)
+                        multiplicationRandom(10, 150)
                     }
                     3 -> {
-                        divisionRandom(501,2000,2,500)
+                        divisionRandom(501, 2000, 2, 500)
                     }
                 }
             }
         } else if (difficult.equals("Expert") || diff.equals("expert")){
 
             if(math.equals("Addition") || operation.equals("add"))
-            additionRandom(2000,50000)
+            additionRandom(2000, 50000)
 
             if (math.equals("Subtraction") || operation.equals("sub"))
-            subtractionRandom(2000,50000)
+            subtractionRandom(2000, 50000)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
-            multiplicationRandom(100,1000)
+            multiplicationRandom(100, 1000)
 
             if (math.equals("Division") || operation.equals("division"))
-            divisionRandom(201,50000,2,200)
+            divisionRandom(201, 50000, 2, 200)
 
             if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
-                        additionRandom(2000,50000)
+                        additionRandom(2000, 50000)
                     }
                     1 -> {
-                        subtractionRandom(2000,50000)
+                        subtractionRandom(2000, 50000)
                     }
                     2 -> {
-                        multiplicationRandom(100,1000)
+                        multiplicationRandom(100, 1000)
                     }
                     3 -> {
-                        divisionRandom(201,50000,2,200)
+                        divisionRandom(201, 50000, 2, 200)
                     }
                 }
             }
         }
     }
 
-    fun additionRandom(numberFirst : Int, numberSecond : Int){
+    fun additionRandom(numberFirst: Int, numberSecond: Int){
 
             var firstNumber = (numberFirst..numberSecond).random()
             var secondNumber = (numberFirst..numberSecond).random()
@@ -239,7 +289,7 @@ class TestActivity : AppCompatActivity() {
             number2.text = secondNumber.toString()
     }
 
-    private fun subtractionRandom(numberFirst : Int, numberSecond : Int){
+    private fun subtractionRandom(numberFirst: Int, numberSecond: Int){
 
             var firstNumber = (numberFirst..numberSecond).random()
             var secondNumber = (numberFirst..numberSecond).random()
@@ -253,7 +303,7 @@ class TestActivity : AppCompatActivity() {
             }
     }
 
-    fun multiplicationRandom(numberFirst : Int, numberSecond : Int){
+    fun multiplicationRandom(numberFirst: Int, numberSecond: Int){
         var firstNumber = (numberFirst..numberSecond).random()
         var secondNumber = (numberFirst..numberSecond).random()
         number1.text = firstNumber.toString()
@@ -261,7 +311,7 @@ class TestActivity : AppCompatActivity() {
 
     }
 
-    fun divisionRandom(numberFirst : Int, numberSecond : Int,numberThird : Int,numberFourth : Int){
+    fun divisionRandom(numberFirst: Int, numberSecond: Int, numberThird: Int, numberFourth: Int){
 
             var firstNumber = (numberFirst..numberSecond).random()
             var secondNumber = (numberThird..numberFourth).random()
@@ -456,6 +506,7 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst + numberSecond) == totalNumber) {
+                        animation!!.end()
                         randomMethod()
                         numberText.text = ""
                     } else {
@@ -471,6 +522,7 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst - numberSecond) == totalNumber) {
+                        animation!!.end()
                         randomMethod()
                         numberText.text = ""
                     } else {
@@ -486,6 +538,7 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst * numberSecond) == totalNumber) {
+                        animation!!.end()
                         randomMethod()
                         numberText.text = ""
                     } else {
@@ -502,6 +555,7 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst / numberSecond) == totalNumber) {
+                        animation!!.end()
                         randomMethod()
                         numberText.text = ""
                     } else {
@@ -519,6 +573,7 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst + numberSecond) == totalNumber) {
+                                animation!!.end()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
@@ -535,6 +590,7 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst - numberSecond) == totalNumber) {
+                                animation!!.end()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
@@ -551,6 +607,7 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst * numberSecond) == totalNumber) {
+                                animation!!.end()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
@@ -567,6 +624,7 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst / numberSecond) == totalNumber) {
+                                animation!!.end()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
@@ -613,11 +671,11 @@ class TestActivity : AppCompatActivity() {
 
     fun Back(view: View) {
         if (diff != null){
-            val intent = Intent(this,QuizActivity::class.java)
+            val intent = Intent(this, QuizActivity::class.java)
             startActivity(intent)
             finish()
         } else {
-            val intent = Intent(this,DifficultyActivity::class.java)
+            val intent = Intent(this, DifficultyActivity::class.java)
             startActivity(intent)
             finish()
         }
