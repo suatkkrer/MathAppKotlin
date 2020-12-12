@@ -361,7 +361,7 @@ class TestActivity : AppCompatActivity() {
     }
 
     fun btnDone(view: View) {
-        if (numberText.text.toString() != "" && math != null) {
+        if ( numberText.text.toString() != "" && math != null) {
             when {
                 math.equals("Addition") -> {
 
@@ -613,7 +613,6 @@ class TestActivity : AppCompatActivity() {
                             } else {
                                 showLongToast("Yanlis")
                                 vibrator!!.vibrate(1000)
-
                             }
                         }
                         3 -> {

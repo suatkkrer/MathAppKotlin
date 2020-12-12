@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1049328413562",
+    "project_id": "mathapp-aabe4",
+    "storage_bucket": "mathapp-aabe4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049328413562:android:947d1e9aa9e58b6578c4c3",
+        "android_client_info": {
+          "package_name": "com.suatkkrer.mathappkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049328413562-02j0u25e0c71qcrkpisu12g4n4r8i2b0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5VfG1WLx2A0iJvqJjv8uTJmCcIkPv0Ko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049328413562-02j0u25e0c71qcrkpisu12g4n4r8i2b0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
