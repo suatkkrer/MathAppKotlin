@@ -25,8 +25,7 @@ class TestActivity : AppCompatActivity() {
     private var operation : String? = null
     private var diff : String? = null
     private var vibrator: Vibrator? = null
-    var t = Timer()
-    var tt: TimerTask? = null
+    var question: Int = 0
     var animation : ObjectAnimator? = null
     private val randOperator = arrayOf(R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_remove_24, R.drawable.ic_baseline_clear_24, R.drawable.divide)
     private var randomImage = (0..3).random()
@@ -99,7 +98,6 @@ class TestActivity : AppCompatActivity() {
 
             progressBar.visibility = View.VISIBLE
 
-            var question: Int = 0
 
             animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100)
             animation!!.duration = 15000
@@ -657,16 +655,21 @@ class TestActivity : AppCompatActivity() {
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
 
     fun Skip(view: View) {
-        if (math.equals("Mixed")){
+
+        if (math.equals("Mixed") || operation.equals("mixed")){
 
             randomImage = (0..3).random()
             operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
 
         }
 
-        randomMethod()
+        if (operation != null){
+            animation!!.end()
+        } else {
 
-        numberText.text = ""
+            randomMethod()
+            numberText.text = ""
+        }
     }
 
     fun Back(view: View) {
