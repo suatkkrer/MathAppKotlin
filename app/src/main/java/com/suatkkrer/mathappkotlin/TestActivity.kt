@@ -32,6 +32,8 @@ class TestActivity : AppCompatActivity() {
     var questionTime : Int = 10000
     var sound : Int = 1
     var vib : Int = 1
+    var trueQuestion = 0
+    var falseQuestion = 0
     var mediaPlayerTrue : MediaPlayer? = null
     var mediaPlayerFalse : MediaPlayer? = null
     var animation : ObjectAnimator? = null
@@ -203,7 +205,10 @@ class TestActivity : AppCompatActivity() {
                         questionText.text = "${question}/${questionNumber}"
                     } else {
                         progressBar.visibility = View.INVISIBLE
-                        val intent1 = Intent(applicationContext, MainActivity::class.java)
+                        val intent1 = Intent(applicationContext, GraphicActivity::class.java).apply {
+                            putExtra("True",trueQuestion)
+                            putExtra("False",falseQuestion)
+                        }
                         startActivity(intent1)
                     }
                 }
@@ -701,12 +706,14 @@ class TestActivity : AppCompatActivity() {
                         animation!!.end()
                         counter!!.cancel()
                         count()
+                        trueQuestion++
                         randomMethod()
                         numberText.text = ""
                     } else {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
+                        falseQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         count()
@@ -727,6 +734,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerTrue!!.start()
                         }
+                        trueQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         count()
@@ -736,6 +744,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
+                        falseQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         showLongToast("Yanlis")
@@ -755,6 +764,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerTrue!!.start()
                         }
+                        trueQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         count()
@@ -764,6 +774,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
+                        falseQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         count()
@@ -785,6 +796,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerTrue!!.start()
                         }
+                        trueQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         count()
@@ -794,6 +806,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
+                        falseQuestion++
                         animation!!.end()
                         counter!!.cancel()
                         count()
@@ -816,6 +829,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerTrue!!.start()
                                 }
+                                trueQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -832,6 +846,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -851,6 +866,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerTrue!!.start()
                                 }
+                                trueQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -867,6 +883,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -886,6 +903,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerTrue!!.start()
                                 }
+                                trueQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -902,6 +920,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -920,6 +939,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerTrue!!.start()
                                 }
+                                trueQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -936,6 +956,7 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
