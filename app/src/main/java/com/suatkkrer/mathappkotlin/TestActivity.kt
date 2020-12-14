@@ -96,6 +96,8 @@ class TestActivity : AppCompatActivity() {
 
         if (operation != null) {
 
+            
+            imageButton.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
 
 
@@ -508,6 +510,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        animation!!.end()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
                     }
@@ -524,6 +527,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        animation!!.end()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
                     }
@@ -540,6 +544,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        animation!!.end()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
 
@@ -557,6 +562,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        animation!!.end()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
 
@@ -577,6 +583,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                animation!!.end()
                                 showLongToast("Yanlis")
                                 vibrator!!.vibrate(1000)
 
@@ -594,6 +601,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                animation!!.end()
                                 showLongToast("Yanlis")
                                 vibrator!!.vibrate(1000)
 
@@ -611,6 +619,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                animation!!.end()
                                 showLongToast("Yanlis")
                                 vibrator!!.vibrate(1000)
                             }
@@ -627,6 +636,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                animation!!.end()
                                 showLongToast("Yanlis")
                                 vibrator!!.vibrate(1000)
 
