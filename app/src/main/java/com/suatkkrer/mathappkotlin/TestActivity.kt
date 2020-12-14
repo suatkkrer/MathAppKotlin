@@ -3,6 +3,7 @@ package com.suatkkrer.mathappkotlin
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Vibrator
 import android.text.Editable
@@ -26,6 +27,7 @@ class TestActivity : AppCompatActivity() {
     private var diff : String? = null
     private var vibrator: Vibrator? = null
     var question: Int = 0
+    var sound : Int? = null
     var animation : ObjectAnimator? = null
     private val randOperator = arrayOf(R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_remove_24, R.drawable.ic_baseline_clear_24, R.drawable.divide)
     private var randomImage = (0..3).random()
@@ -50,6 +52,7 @@ class TestActivity : AppCompatActivity() {
 
         Log.e("Operation", operation.toString())
         Log.e("Diff", diff.toString())
+        Log.e("Test", sound.toString())
 
         if (math != null){
             when {
@@ -96,7 +99,7 @@ class TestActivity : AppCompatActivity() {
 
         if (operation != null) {
 
-            
+
             imageButton.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
 
@@ -372,6 +375,8 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst + numberSecond) == totalNumber) {
+                        val mediaPlayer = MediaPlayer.create(this,R.raw.correct)
+                        mediaPlayer.start()
                         randomMethod()
                         numberText.text = ""
                     } else {

@@ -8,15 +8,39 @@
     android:layout_weight="6"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:onClick="settings"
-        android:background="@drawable/ic_baseline_settings_24"
-        android:layout_gravity="end"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="20dp"
+            android:onClick="stars"
+            android:background="@drawable/stars"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="settings"
+            android:background="@drawable/ic_baseline_settings_24"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            />
+
+
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/Addition"
