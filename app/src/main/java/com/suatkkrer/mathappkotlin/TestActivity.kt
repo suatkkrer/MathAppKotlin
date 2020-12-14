@@ -205,6 +205,7 @@ class TestActivity : AppCompatActivity() {
                         questionText.text = "${question}/${questionNumber}"
                     } else {
                         progressBar.visibility = View.INVISIBLE
+                        countDown.visibility = View.INVISIBLE
                         val intent1 = Intent(applicationContext, GraphicActivity::class.java).apply {
                             putExtra("True",trueQuestion)
                             putExtra("False",falseQuestion)
