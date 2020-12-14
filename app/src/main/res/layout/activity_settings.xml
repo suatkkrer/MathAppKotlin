@@ -42,6 +42,7 @@
             <Switch
                 android:id="@+id/soundSwitch"
                 android:layout_width="80dp"
+                android:checked="true"
                 android:layout_marginStart="83dp"
                 android:layout_height="wrap_content"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -81,6 +82,7 @@
                 android:id="@+id/vibrationSwitch"
                 android:layout_width="80dp"
                 android:layout_marginStart="50dp"
+                android:checked="true"
                 android:layout_height="wrap_content"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
 

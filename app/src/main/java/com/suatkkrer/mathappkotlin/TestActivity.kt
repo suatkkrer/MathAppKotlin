@@ -3,12 +3,13 @@ package com.suatkkrer.mathappkotlin
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Vibrator
 import android.text.Editable
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
@@ -17,7 +18,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_test.*
-import java.util.*
 
 
 class TestActivity : AppCompatActivity() {
@@ -28,11 +28,20 @@ class TestActivity : AppCompatActivity() {
     private var diff : String? = null
     private var vibrator: Vibrator? = null
     var question: Int = 1
-    var questionNumber: Int = 30
-    var sound : Int? = null
+    var questionNumber: Int = 10
+    var questionTime : Int = 10000
+    var sound : Int = 1
+    var vib : Int = 1
+    var mediaPlayerTrue : MediaPlayer? = null
+    var mediaPlayerFalse : MediaPlayer? = null
     var animation : ObjectAnimator? = null
     var counter : CountDownTimer? = null
-    private val randOperator = arrayOf(R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_remove_24, R.drawable.ic_baseline_clear_24, R.drawable.divide)
+    private val randOperator = arrayOf(
+        R.drawable.ic_baseline_add_24,
+        R.drawable.ic_baseline_remove_24,
+        R.drawable.ic_baseline_clear_24,
+        R.drawable.divide
+    )
     private var randomImage = (0..3).random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,39 +49,83 @@ class TestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_test)
 
         this.window.setFlags(
-                WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
         setSupportActionBar(toolbar)
 
         vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
 
+        mediaPlayerTrue = MediaPlayer.create(this, R.raw.correct)
+        mediaPlayerFalse = MediaPlayer.create(this, R.raw.wrong)
+
         math = intent.getStringExtra("Operator")
         difficult = intent.getStringExtra("Difficulty")
         operation = intent.getStringExtra("Operation")
         diff = intent.getStringExtra("Diff")
 
-        Log.e("Operation", operation.toString())
-        Log.e("Diff", diff.toString())
-        Log.e("Test", sound.toString())
+        try {
+            val sqliteDatabase : SQLiteDatabase = this.openOrCreateDatabase("Settings", MODE_PRIVATE, null)
+
+            sqliteDatabase.execSQL("CREATE TABLE IF NOT EXISTS settings (sound INTEGER, vibration INTEGER, question INTEGER, time INTEGER)")
+
+            val cursor : Cursor = sqliteDatabase.rawQuery("SELECT * FROM settings",null)
+
+            var soundDatabase = cursor.getColumnIndex("sound")
+            var vibDatabase = cursor.getColumnIndex("vibration")
+            var questionNumberDatabase = cursor.getColumnIndex("question")
+            var questionTimeDatabase = cursor.getColumnIndex("time")
+
+            while (cursor.moveToNext()){
+                sound = cursor.getInt(soundDatabase)
+                vib = cursor.getInt(vibDatabase)
+                questionNumber = cursor.getInt(questionNumberDatabase)
+                questionTime = cursor.getInt(questionTimeDatabase)
+            }
+
+            cursor.close()
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         if (math != null){
             when {
                 math.equals("Addition") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_add_24))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_add_24
+                        )
+                    )
                 }
                 math.equals("Subtraction") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_remove_24))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_remove_24
+                        )
+                    )
                 }
                 math.equals("Multiplication") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_clear_24))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_clear_24
+                        )
+                    )
                 }
                 math.equals("Division") -> {
                     operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.divide))
                 }
                 math.equals("Mixed") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            randOperator[randomImage]
+                        )
+                    )
                 }
             }
         }
@@ -80,19 +133,39 @@ class TestActivity : AppCompatActivity() {
         if (operation != null){
             when {
                 operation.equals("add") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_add_24))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_add_24
+                        )
+                    )
                 }
                 operation.equals("sub") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_remove_24))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_remove_24
+                        )
+                    )
                 }
                 operation.equals("multiply") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_baseline_clear_24))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_baseline_clear_24
+                        )
+                    )
                 }
                 operation.equals("division") -> {
                     operator.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.divide))
                 }
                 operation.equals("mixed") -> {
-                    operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                    operator.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            randOperator[randomImage]
+                        )
+                    )
                 }
             }
         }
@@ -111,7 +184,7 @@ class TestActivity : AppCompatActivity() {
 
 
             animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100)
-            animation!!.duration = 15000
+            animation!!.duration = questionTime.toLong()
             animation!!.interpolator = DecelerateInterpolator()
             animation!!.addListener(object : Animator.AnimatorListener {
 
@@ -121,7 +194,7 @@ class TestActivity : AppCompatActivity() {
 
                 override fun onAnimationEnd(animator: Animator) {
                     question++
-                    if (question < 11) {
+                    if (question < (questionNumber + 1)) {
                         randomMethod()
                         counter!!.cancel()
                         count()
@@ -172,7 +245,7 @@ class TestActivity : AppCompatActivity() {
 
         countDown.text = ""
 
-         counter = object : CountDownTimer(15000,1000){
+         counter = object : CountDownTimer(questionTime.toLong(), 1000){
             override fun onTick(p0: Long) {
                 countDown.text = "${p0 / 1000}"
             }
@@ -404,13 +477,19 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst + numberSecond) == totalNumber) {
-                        val mediaPlayer = MediaPlayer.create(this,R.raw.correct)
-                        mediaPlayer.start()
+                       if (sound == 1){
+                           mediaPlayerTrue!!.start()
+                       }
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(100)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
                     }
 
                 }
@@ -421,11 +500,19 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst - numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(100)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
                     }
 
                 }
@@ -436,11 +523,19 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst * numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(100)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
 
                     }
 
@@ -452,11 +547,19 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst / numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(100)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
 
                     }
                 }
@@ -469,13 +572,26 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst + numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }
@@ -485,13 +601,26 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst - numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }
@@ -501,13 +630,26 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst * numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }
@@ -517,13 +659,26 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst / numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }
@@ -540,17 +695,25 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst + numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(1000)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
                     }
 
                 }
@@ -561,16 +724,24 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst - numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(1000)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
                     }
 
                 }
@@ -581,17 +752,25 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst * numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(1000)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
 
                     }
 
@@ -603,17 +782,25 @@ class TestActivity : AppCompatActivity() {
                     val totalNumber = Integer.parseInt(numberText.text.toString())
 
                     if ((numberFirst / numberSecond) == totalNumber) {
+                        if (sound == 1){
+                            mediaPlayerTrue!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        if (sound == 1){
+                            mediaPlayerFalse!!.start()
+                        }
                         animation!!.end()
                         counter!!.cancel()
                         count()
                         showLongToast("Yanlis")
-                        vibrator!!.vibrate(1000)
+                        if (vib == 1) {
+                            vibrator!!.vibrate(100)
+                        }
 
                     }
                 }
@@ -626,19 +813,32 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst + numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(1000)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }
@@ -648,19 +848,32 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst - numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }
@@ -670,19 +883,32 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst * numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
                             }
                         }
                         3 -> {
@@ -691,19 +917,32 @@ class TestActivity : AppCompatActivity() {
                             val totalNumber = Integer.parseInt(numberText.text.toString())
 
                             if ((numberFirst / numberSecond) == totalNumber) {
+                                if (sound == 1) {
+                                    mediaPlayerTrue!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 randomImage = (0..3).random()
-                                operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
+                                operator.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        randOperator[randomImage]
+                                    )
+                                )
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                if (sound == 1) {
+                                    mediaPlayerFalse!!.start()
+                                }
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(100)
+                                if (vib == 1) {
+                                    vibrator!!.vibrate(100)
+                                }
 
                             }
                         }

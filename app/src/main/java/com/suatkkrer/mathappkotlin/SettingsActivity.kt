@@ -133,16 +133,25 @@ class SettingsActivity : AppCompatActivity() {
                 }
             }
 
-            val sqliteDatabase: SQLiteDatabase =
-                this.openOrCreateDatabase("Settings", MODE_PRIVATE, null)
+            try {
+                val sqliteDatabase: SQLiteDatabase =
+                    this.openOrCreateDatabase("Settings", MODE_PRIVATE, null)
 
-            sqliteDatabase.execSQL("CREATE TABLE IF NOT EXISTS settings (sound INTEGER, vibration INTEGER, question INTEGER, time INTEGER)")
+                sqliteDatabase.execSQL("CREATE TABLE IF NOT EXISTS settings (sound INTEGER, vibration INTEGER, question INTEGER, time INTEGER)")
 
-            sqliteDatabase.execSQL("DELETE FROM settings")
+                sqliteDatabase.execSQL("DELETE FROM settings")
 
-            sqliteDatabase.execSQL("CREATE TABLE IF NOT EXISTS settings (sound INTEGER, vibration INTEGER, question INTEGER, time INTEGER)")
+                sqliteDatabase.execSQL("CREATE TABLE IF NOT EXISTS settings (sound INTEGER, vibration INTEGER, question INTEGER, time INTEGER)")
 
-            sqliteDatabase.execSQL("INSERT INTO settings (sound, vibration, question, time) VALUES (${sou},${vib},${questionNumber},${questionTime})")
+                sqliteDatabase.execSQL("INSERT INTO settings (sound, vibration, question, time) VALUES (${sou},${vib},${questionNumber},${questionTime})")
+
+                showLongToast("Your Settings Have Been Saved")
+
+
+            } catch (e : Exception){
+                e.printStackTrace();
+            }
+
 
         } else {
             showLongToast("Please Select Question Number and Time")
