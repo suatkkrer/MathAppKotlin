@@ -55,6 +55,23 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
+            <TextView
+                android:layout_width="97dp"
+                android:layout_height="60dp"
+                android:id="@+id/questionText"
+                android:text="1/10"
+                android:gravity="center"
+                android:textSize="30sp"
+                android:textColor="@color/white"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -62,7 +79,17 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
+    <TextView
+        android:id="@+id/countDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="30"
+        android:visibility="invisible"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+        app:layout_constraintStart_toStartOf="@+id/progressBar"
+        app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -133,6 +160,7 @@
         android:id="@+id/numberText"
         android:layout_height="56dp"
         android:paddingTop="10dp"
+        android:maxLength="7"
         android:textAlignment="center"
         android:textSize="25sp"
         android:layout_marginStart="100dp"
@@ -143,6 +171,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+
 
     <GridLayout
 

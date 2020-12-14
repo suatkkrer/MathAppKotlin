@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Vibrator
 import android.text.Editable
 import android.util.Log
@@ -26,9 +27,11 @@ class TestActivity : AppCompatActivity() {
     private var operation : String? = null
     private var diff : String? = null
     private var vibrator: Vibrator? = null
-    var question: Int = 0
+    var question: Int = 1
+    var questionNumber: Int = 30
     var sound : Int? = null
     var animation : ObjectAnimator? = null
+    var counter : CountDownTimer? = null
     private val randOperator = arrayOf(R.drawable.ic_baseline_add_24, R.drawable.ic_baseline_remove_24, R.drawable.ic_baseline_clear_24, R.drawable.divide)
     private var randomImage = (0..3).random()
 
@@ -99,9 +102,12 @@ class TestActivity : AppCompatActivity() {
 
         if (operation != null) {
 
-
+            questionText.visibility = View.VISIBLE
+            countDown.visibility = View.VISIBLE
             imageButton.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
+
+            questionText.text = "${question}/${questionNumber}"
 
 
             animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100)
@@ -115,11 +121,13 @@ class TestActivity : AppCompatActivity() {
 
                 override fun onAnimationEnd(animator: Animator) {
                     question++
-                    Log.e("question", question.toString())
-                    if (question != 10) {
+                    if (question < 11) {
                         randomMethod()
+                        counter!!.cancel()
+                        count()
                         animation!!.start()
                         numberText.text = ""
+                        questionText.text = "${question}/${questionNumber}"
                     } else {
                         progressBar.visibility = View.INVISIBLE
                         val intent1 = Intent(applicationContext, MainActivity::class.java)
@@ -135,6 +143,7 @@ class TestActivity : AppCompatActivity() {
 
                 }
             })
+            count()
             animation!!.start()
         }
 
@@ -155,6 +164,26 @@ class TestActivity : AppCompatActivity() {
 //        }
 //        t.schedule(tt, 0, 100)
 //        Log.e("Question", question.toString())
+
+    }
+
+
+    fun count(){
+
+        countDown.text = ""
+
+         counter = object : CountDownTimer(15000,1000){
+            override fun onTick(p0: Long) {
+                countDown.text = "${p0 / 1000}"
+            }
+
+            override fun onFinish() {
+                this.start()
+            }
+
+        }
+
+        (counter as CountDownTimer).start()
 
     }
 
@@ -512,10 +541,14 @@ class TestActivity : AppCompatActivity() {
 
                     if ((numberFirst + numberSecond) == totalNumber) {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         randomMethod()
                         numberText.text = ""
                     } else {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
                     }
@@ -529,10 +562,13 @@ class TestActivity : AppCompatActivity() {
 
                     if ((numberFirst - numberSecond) == totalNumber) {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         randomMethod()
                         numberText.text = ""
                     } else {
                         animation!!.end()
+                        counter!!.cancel()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
                     }
@@ -546,10 +582,14 @@ class TestActivity : AppCompatActivity() {
 
                     if ((numberFirst * numberSecond) == totalNumber) {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         randomMethod()
                         numberText.text = ""
                     } else {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
 
@@ -564,10 +604,14 @@ class TestActivity : AppCompatActivity() {
 
                     if ((numberFirst / numberSecond) == totalNumber) {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         randomMethod()
                         numberText.text = ""
                     } else {
                         animation!!.end()
+                        counter!!.cancel()
+                        count()
                         showLongToast("Yanlis")
                         vibrator!!.vibrate(1000)
 
@@ -583,12 +627,16 @@ class TestActivity : AppCompatActivity() {
 
                             if ((numberFirst + numberSecond) == totalNumber) {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
                                 numberText.text = ""
                             } else {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 showLongToast("Yanlis")
                                 vibrator!!.vibrate(1000)
 
@@ -601,14 +649,18 @@ class TestActivity : AppCompatActivity() {
 
                             if ((numberFirst - numberSecond) == totalNumber) {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
                                 numberText.text = ""
                             } else {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(1000)
+                                vibrator!!.vibrate(100)
 
                             }
                         }
@@ -619,14 +671,18 @@ class TestActivity : AppCompatActivity() {
 
                             if ((numberFirst * numberSecond) == totalNumber) {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
                                 numberText.text = ""
                             } else {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(1000)
+                                vibrator!!.vibrate(100)
                             }
                         }
                         3 -> {
@@ -636,14 +692,18 @@ class TestActivity : AppCompatActivity() {
 
                             if ((numberFirst / numberSecond) == totalNumber) {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 randomImage = (0..3).random()
                                 operator.setImageDrawable(ContextCompat.getDrawable(this, randOperator[randomImage]))
                                 randomMethod()
                                 numberText.text = ""
                             } else {
                                 animation!!.end()
+                                counter!!.cancel()
+                                count()
                                 showLongToast("Yanlis")
-                                vibrator!!.vibrate(1000)
+                                vibrator!!.vibrate(100)
 
                             }
                         }
