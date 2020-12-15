@@ -226,23 +226,6 @@ class TestActivity : AppCompatActivity() {
             animation!!.start()
         }
 
-//        var counter : Int = 0
-//        var question : Int = 0
-//
-//        t = Timer()
-//        tt = object : TimerTask(){
-//            override fun run() {
-//                counter++
-//                progressBar.progress = counter
-//                if (counter == 100){
-//                    question++
-//                    counter = 0
-//                    randomMethod()
-//                }
-//            }
-//        }
-//        t.schedule(tt, 0, 100)
-//        Log.e("Question", question.toString())
 
     }
 
