@@ -831,6 +831,13 @@ class TestActivity : AppCompatActivity() {
                                     mediaPlayerFalse!!.start()
                                 }
                                 falseQuestion++
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                this,
+                                                randOperator[randomImage]
+                                        )
+                                )
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
@@ -867,6 +874,13 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                this,
+                                                randOperator[randomImage]
+                                        )
+                                )
                                 falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
@@ -904,6 +918,13 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                this,
+                                                randOperator[randomImage]
+                                        )
+                                )
                                 falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
@@ -940,6 +961,13 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
+                                randomImage = (0..3).random()
+                                operator.setImageDrawable(
+                                        ContextCompat.getDrawable(
+                                                this,
+                                                randOperator[randomImage]
+                                        )
+                                )
                                 falseQuestion++
                                 animation!!.end()
                                 counter!!.cancel()
