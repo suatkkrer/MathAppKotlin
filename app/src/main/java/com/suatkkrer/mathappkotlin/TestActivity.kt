@@ -986,13 +986,13 @@ class TestActivity : AppCompatActivity() {
     }
 
 
-    private fun closeKeyboard() {
-        val view = this.currentFocus
-        if (view != null) {
-            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-        }
-    }
+//    private fun closeKeyboard() {
+//        val view = this.currentFocus
+//        if (view != null) {
+//            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+//            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+//        }
+//    }
 
     fun showLongToast(msg: String?) {
         Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
