@@ -7,11 +7,13 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_difficulty.*
 import kotlinx.android.synthetic.main.activity_test.*
 
 class DifficultyActivity : AppCompatActivity() {
 
     var math: String? = null
+    var diff: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,9 @@ class DifficultyActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         math = intent.getStringExtra("Math")
+        diff = intent.getStringExtra("difficulty")
 
+        difficultyText.text = diff
 
     }
 

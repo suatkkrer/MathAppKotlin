@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
             putExtra("Math","Addition")
+            putExtra("difficulty","Addition")
         }
         startActivity(intent)
     }
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
             putExtra("Math","Subtraction")
+            putExtra("difficulty","Subtraction")
         }
         startActivity(intent)
     }
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
             putExtra("Math","Multiplication")
+            putExtra("difficulty","Multiplication")
         }
         startActivity(intent)
     }
@@ -50,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
             putExtra("Math","Division")
+            putExtra("difficulty","Division")
         }
         startActivity(intent)
     }
@@ -59,6 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {
             putExtra("Math","Mixed")
+            putExtra("difficulty","Mixed")
         }
         startActivity(intent)
     }
