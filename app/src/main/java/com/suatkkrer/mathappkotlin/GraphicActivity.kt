@@ -19,12 +19,15 @@ class GraphicActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-
-        trueQuestion = intent.getIntExtra("True",-1)
         falseQuestion = intent.getIntExtra("False",-1)
+        trueQuestion = intent.getIntExtra("True",-1)
+
+
 
         if (trueQuestion != -1 && falseQuestion != -1){
+
             textView3.text = "$trueQuestion"
+
             textView4.text = "$falseQuestion"
         }
 
