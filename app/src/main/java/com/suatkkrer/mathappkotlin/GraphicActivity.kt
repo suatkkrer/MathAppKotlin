@@ -28,6 +28,9 @@ class GraphicActivity : AppCompatActivity() {
 
             textView3.text = "$trueQuestion"
 
+
+
+
             textView4.text = "$falseQuestion"
         }
 
