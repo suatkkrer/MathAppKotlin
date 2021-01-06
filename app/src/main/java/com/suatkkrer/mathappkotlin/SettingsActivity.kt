@@ -36,7 +36,10 @@ class SettingsActivity : AppCompatActivity() {
         testActivity = TestActivity()
 
 
+
         loadData()
+
+
 
 
         soundSwitch.setOnCheckedChangeListener { compoundButton, onSwitch ->
