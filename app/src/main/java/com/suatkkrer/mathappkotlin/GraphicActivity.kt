@@ -24,6 +24,9 @@ class GraphicActivity : AppCompatActivity() {
 
 
 
+
+
+
         if (trueQuestion != -1 && falseQuestion != -1){
             textView3.text = "True answers $trueQuestion"
             textView4.text = "False Answers $falseQuestion"
