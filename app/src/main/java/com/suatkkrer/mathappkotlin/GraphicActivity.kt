@@ -14,9 +14,12 @@ class GraphicActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graphic)
 
+        // Flag removed
         this.window.setFlags(
+
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
+
         )
 
         falseQuestion = intent.getIntExtra("False",-1)
