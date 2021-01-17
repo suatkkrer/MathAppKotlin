@@ -34,10 +34,6 @@ class DifficultyActivity : AppCompatActivity() {
 
     }
 
-    fun showLongToast(msg: String?) {
-        Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
-    }
-
     fun Easy(view: View) {
         val intent = Intent(this,TestActivity::class.java).apply {
             putExtra("Difficulty","Easy")
