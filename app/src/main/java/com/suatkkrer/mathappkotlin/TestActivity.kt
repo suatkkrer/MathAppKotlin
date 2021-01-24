@@ -173,7 +173,9 @@ class TestActivity : AppCompatActivity() {
         }
 
 
+
         randomMethod()
+
 
         if (operation != null) {
 
