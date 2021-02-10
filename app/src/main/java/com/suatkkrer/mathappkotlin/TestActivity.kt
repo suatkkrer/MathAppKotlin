@@ -70,6 +70,8 @@ class TestActivity : AppCompatActivity() {
         operation = intent.getStringExtra("Operation")
         diff = intent.getStringExtra("Diff")
 
+
+
         try {
             val sqliteDatabase : SQLiteDatabase = this.openOrCreateDatabase("Settings", MODE_PRIVATE, null)
 
