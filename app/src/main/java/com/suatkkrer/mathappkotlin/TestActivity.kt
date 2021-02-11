@@ -45,8 +45,6 @@ class TestActivity : AppCompatActivity() {
         R.drawable.divide
     )
 
-
-
     private var randomImage = (0..3).random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
