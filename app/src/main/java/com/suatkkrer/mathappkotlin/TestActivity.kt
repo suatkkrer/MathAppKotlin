@@ -56,6 +56,7 @@ class TestActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+
         setSupportActionBar(toolbar)
 
         vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
