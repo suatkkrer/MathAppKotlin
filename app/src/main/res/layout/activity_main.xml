@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/mainBoard"
         android:orientation="horizontal">
 
         <ImageButton
@@ -40,92 +41,325 @@
 
     </LinearLayout>
 
-
-
-    <Button
-        android:id="@+id/Addition"
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="30dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Addition"
-        android:onClick="Addition"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        />
-
-    <Button
-        android:id="@+id/Subtraction"
-        android:layout_width="match_parent"
-        android:onClick="Subtraction"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Subtraction"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        />
-
-    <Button
-        android:id="@+id/Multiplication"
-        android:layout_width="match_parent"
-        android:onClick="Multiplication"
-        android:text="Multiplication"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-    <Button
-        android:id="@+id/Division"
-        android:onClick="Division"
-        android:layout_width="match_parent"
-        android:text="Division"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-    <Button
-        android:id="@+id/Mixed"
-        android:onClick="Mixed"
-        android:layout_width="match_parent"
-        android:text="Mixed"
-        android:textAllCaps="false"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="40dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-    <Button
-        android:id="@+id/quiz"
-        android:text="Quiz"
-        android:onClick="Quiz"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="60dp"
-        android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mainBoard"
+        android:rowCount="3"
+        android:columnCount="2"
+        android:layout_margin="20dp"
+        >
 
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
 
-</LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center_vertical|center_horizontal">
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/addition"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Addition"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/minus"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subtraction"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/multiplication"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Multiplication"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/division"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Division"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/mix"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mix"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/exam"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quiz"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </GridLayout>
+
+
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/Addition"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:text="Addition"-->
+<!--        android:onClick="Addition"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/Subtraction"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:onClick="Subtraction"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:text="Subtraction"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/Multiplication"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:onClick="Multiplication"-->
+<!--        android:text="Multiplication"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/Division"-->
+<!--        android:onClick="Division"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:text="Division"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/Mixed"-->
+<!--        android:onClick="Mixed"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:text="Mixed"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/quiz"-->
+<!--        android:text="Quiz"-->
+<!--        android:onClick="Quiz"-->
+<!--        android:layout_marginTop="40dp"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginBottom="60dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        />-->
+
+
+
+</RelativeLayout>
