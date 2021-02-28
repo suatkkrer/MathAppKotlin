@@ -11,12 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MathAppKotlin">
-        <activity android:name=".GraphicActivity"></activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".DifficultyActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".GraphicActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".TestActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".QuizActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DifficultyActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

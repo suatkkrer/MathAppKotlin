@@ -64,62 +64,232 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <Button
-        android:id="@+id/easy"
-        android:onClick="Easy"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="100dp"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:textSize="20dp"
-        android:layout_width="match_parent"
-        android:text="Easy"
-        android:textAllCaps="false"
-        />
 
-    <Button
-        android:id="@+id/medium"
-        android:onClick="Medium"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:text="Medium"
-        android:textSize="20dp"
-        android:layout_marginTop="60dp"
-        android:textAllCaps="false"
+    <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        />
-
-    <Button
-        android:id="@+id/hard"
-        android:onClick="Hard"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="60dp"
-        android:textSize="20dp"
-        android:text="Hard"
-        android:textAllCaps="false"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        />
-
-    <Button
-        android:id="@+id/expert"
-        android:onClick="Expert"
-        android:textSize="20dp"
-        android:text="Expert"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginEnd="70dp"
-        android:textAllCaps="false"
-        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="100dp"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        />
+        >
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/easy"
+                android:gravity="center"
+                android:onClick="Easy"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/bronze"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Easy"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/medium"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:onClick="Medium"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/silver"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Medium"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hard"
+                android:onClick="Hard"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/gold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hard"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/expert"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:onClick="Expert"
+                android:layout_gravity="center_vertical|center_horizontal">
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/best"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expert"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </GridLayout>
+
+
+<!--    <Button-->
+<!--        android:id="@+id/easy"-->
+<!--        android:onClick="Easy"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="2"-->
+<!--        android:textSize="20dp"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:text="Easy"-->
+<!--        android:textAllCaps="false"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/medium"-->
+<!--        android:onClick="Medium"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:text="Medium"-->
+<!--        android:textSize="20dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="2"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/hard"-->
+<!--        android:onClick="Hard"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:textSize="20dp"-->
+<!--        android:text="Hard"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="2"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/expert"-->
+<!--        android:onClick="Expert"-->
+<!--        android:textSize="20dp"-->
+<!--        android:text="Expert"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginEnd="70dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginBottom="100dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="2"-->
+<!--        />-->
 
 
 
