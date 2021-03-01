@@ -30,8 +30,8 @@ class TestActivity : AppCompatActivity() {
     var question: Int = 1
     var questionNumber: Int = 10
     var questionTime : Int = 10000
-    var sound : Int = 1
-    var vib : Int = 1
+    var sound : Int = 0
+    var vib : Int = 0
     var trueQuestion = 0
     var falseQuestion = 0
     var mediaPlayerTrue : MediaPlayer? = null
@@ -483,7 +483,7 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
-                        showLongToast("Yanlis")
+                        showLongToast("Wrong")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -1028,11 +1028,11 @@ class TestActivity : AppCompatActivity() {
 
     fun Back(view: View) {
         if (diff != null){
-            val intent = Intent(this, QuizActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         } else {
-            val intent = Intent(this, DifficultyActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }

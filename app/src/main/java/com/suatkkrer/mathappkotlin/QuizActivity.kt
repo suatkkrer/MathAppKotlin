@@ -70,6 +70,7 @@ class QuizActivity : AppCompatActivity() {
                 putExtra("Diff",diff)
             }
             startActivity(intent)
+            finish()
         } else {
             showLongToast("Please Select Math Operation and Difficulty Level")
         }
