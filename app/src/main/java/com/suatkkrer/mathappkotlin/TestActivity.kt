@@ -264,10 +264,10 @@ class TestActivity : AppCompatActivity() {
         if (difficult.equals("Easy") || diff.equals("easy")){
 
             if(math.equals("Addition") || operation.equals("add"))
-            additionRandom(2, 100)
+            additionRandom(2, 50)
 
             if (math.equals("Subtraction") || operation.equals("sub"))
-            subtractionRandom(2, 100)
+            subtractionRandom(2, 50)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
             multiplicationRandom(2, 10)
@@ -278,10 +278,10 @@ class TestActivity : AppCompatActivity() {
             if (math.equals("Mixed") || operation.equals("mixed")){
                 when(randomImage){
                     0 -> {
-                        additionRandom(2, 100)
+                        additionRandom(2, 50)
                     }
                     1 -> {
-                        subtractionRandom(2, 100)
+                        subtractionRandom(2, 50)
                     }
                     2 -> {
                         multiplicationRandom(2, 10)
@@ -301,7 +301,7 @@ class TestActivity : AppCompatActivity() {
             subtractionRandom(100, 500)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
-            multiplicationRandom(2, 50)
+            multiplicationRandom(2, 30)
 
             if (math.equals("Division") || operation.equals("division"))
             divisionRandom(201, 500, 50, 200)
@@ -315,7 +315,7 @@ class TestActivity : AppCompatActivity() {
                         subtractionRandom(100, 500)
                     }
                     2 -> {
-                        multiplicationRandom(2, 50)
+                        multiplicationRandom(2, 30)
                     }
                     3 -> {
                         divisionRandom(201, 500, 50, 200)
@@ -331,7 +331,7 @@ class TestActivity : AppCompatActivity() {
             subtractionRandom(500, 2000)
 
             if (math.equals("Multiplication") || operation.equals("multiply"))
-            multiplicationRandom(10, 150)
+            multiplicationRandom(10, 100)
 
             if (math.equals("Division") || operation.equals("division"))
             divisionRandom(501, 2000, 2, 500)
@@ -345,7 +345,7 @@ class TestActivity : AppCompatActivity() {
                         subtractionRandom(500, 2000)
                     }
                     2 -> {
-                        multiplicationRandom(10, 150)
+                        multiplicationRandom(10, 100)
                     }
                     3 -> {
                         divisionRandom(501, 2000, 2, 500)
