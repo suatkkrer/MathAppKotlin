@@ -86,23 +86,7 @@ class SettingsActivity : AppCompatActivity() {
         vibrationSwitch.isChecked = savedVibration
     }
 
-    fun rateApp(view: View) {
-        try {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=" + this.packageName)
-                )
-            )
-        } catch (e: ActivityNotFoundException) {
-            startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.packageName)
-                )
-            )
-        }
-    }
+
 
     fun saveSettings(view: View) {
 
@@ -159,5 +143,11 @@ class SettingsActivity : AppCompatActivity() {
 
     fun showLongToast(msg: String?) {
         Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
+    }
+
+    fun backButton(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

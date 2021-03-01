@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+
     fun Addition(view: View) {
 
         val intent = Intent(this, DifficultyActivity::class.java).apply {

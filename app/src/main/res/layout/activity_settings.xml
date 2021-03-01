@@ -8,6 +8,44 @@
     android:background="@drawable/background"
     tools:context=".SettingsActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title=" " />
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="97dp"
+                android:onClick="backButton"
+                android:layout_height="60dp"
+                app:icon="@drawable/ic_baseline_arrow_back_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:layout_marginTop="20dp"
@@ -35,8 +73,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:text="Ses Ac Kapa"
-                    android:textColor="@color/black"
+                    android:text="Sound"
+
                     android:textSize="16sp" />
 
 
@@ -75,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_height="wrap_content"
-                    android:text="Titresim Ac Kapa"
+                    android:text="Vibration"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -121,7 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quiz Soru Sayisi"
+                    android:text="Number of Questions"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -202,7 +240,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Quiz Soru Suresi"
+                    android:text="Question Time"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -300,6 +338,8 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="0.5dp"-->
 <!--            android:background="@color/black" />-->
+
+
 
 
    </LinearLayout>
