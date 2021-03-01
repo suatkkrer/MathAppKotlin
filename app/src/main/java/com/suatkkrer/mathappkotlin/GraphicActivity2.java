@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.github.mikephil.charting.charts.PieChart;
@@ -58,5 +59,11 @@ public class GraphicActivity2 extends AppCompatActivity {
 
         }
 
+    }
+
+    public void backk(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

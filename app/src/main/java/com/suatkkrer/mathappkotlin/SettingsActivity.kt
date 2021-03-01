@@ -23,6 +23,8 @@ class SettingsActivity : AppCompatActivity() {
     var vib : Int = 0
     var questionNumber : Int = 10
     var questionTime : Int = 10000
+    var savedNumber = 10
+    var savedTime = 10000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +68,11 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        saveData()
+    }
+
     fun saveData(){
 
 
@@ -74,6 +81,8 @@ class SettingsActivity : AppCompatActivity() {
         editor.apply(){
             putBoolean("BOOLEAN_SOUND",soundSwitch.isChecked)
             putBoolean("BOOLEAN_VIBRATION",vibrationSwitch.isChecked)
+            putInt("QUESTION_NUMBER",questionNumber)
+            putInt("QUESTION_TIME",questionTime)
         }.apply()
     }
 
@@ -81,6 +90,8 @@ class SettingsActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("sharedPrefs",Context.MODE_PRIVATE)
         val savedSound = sharedPreferences.getBoolean("BOOLEAN_SOUND",false)
         val savedVibration = sharedPreferences.getBoolean("BOOLEAN_VIBRATION",false)
+        savedNumber = sharedPreferences.getInt("QUESTION_NUMBER",10)
+        savedTime = sharedPreferences.getInt("QUESTION_TIME",10000)
 
         soundSwitch.isChecked = savedSound
         vibrationSwitch.isChecked = savedVibration
@@ -90,8 +101,6 @@ class SettingsActivity : AppCompatActivity() {
 
     fun saveSettings(view: View) {
 
-        if ((question10.isChecked || question20.isChecked || question30.isChecked) &&
-            (time10.isChecked || time20.isChecked || time30.isChecked)) {
 
             when {
                 question10.isChecked -> {
@@ -103,7 +112,11 @@ class SettingsActivity : AppCompatActivity() {
                 question30.isChecked -> {
                     questionNumber = 30
                 }
+                else -> {
+                    questionNumber = savedNumber
+                }
             }
+
 
             when {
                 time10.isChecked -> {
@@ -112,6 +125,9 @@ class SettingsActivity : AppCompatActivity() {
                     questionTime = 20000
                 } time30.isChecked -> {
                     questionTime = 30000
+                }
+                else -> {
+                    questionTime = savedTime
                 }
             }
 
@@ -134,10 +150,12 @@ class SettingsActivity : AppCompatActivity() {
                 e.printStackTrace();
             }
 
+        saveData()
 
-        } else {
-            showLongToast("Please Select Question Number and Time")
-        }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+
 
     }
 

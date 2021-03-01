@@ -482,6 +482,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        showLongToast("Wrong Answer!!!")
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
@@ -504,6 +505,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        showLongToast("Wrong Answer!!!")
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
@@ -526,6 +528,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        showLongToast("Wrong Answer!!!")
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
@@ -549,6 +552,7 @@ class TestActivity : AppCompatActivity() {
                         randomMethod()
                         numberText.text = ""
                     } else {
+                        showLongToast("Wrong Answer!!!")
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
@@ -580,6 +584,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                showLongToast("Wrong Answer!!!")
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
@@ -608,6 +613,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                showLongToast("Wrong Answer!!!")
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
@@ -636,6 +642,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                showLongToast("Wrong Answer!!!")
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
@@ -664,6 +671,7 @@ class TestActivity : AppCompatActivity() {
                                 randomMethod()
                                 numberText.text = ""
                             } else {
+                                showLongToast("Wrong Answer!!!")
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
@@ -990,7 +998,7 @@ class TestActivity : AppCompatActivity() {
 //    }
 
     fun showLongToast(msg: String?) {
-        Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
+        Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
     }
 
     fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)
