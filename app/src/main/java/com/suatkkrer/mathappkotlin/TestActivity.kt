@@ -214,11 +214,12 @@ class TestActivity : AppCompatActivity() {
                     } else {
                         progressBar.visibility = View.INVISIBLE
                         countDown.visibility = View.INVISIBLE
-                        val intent1 = Intent(applicationContext, GraphicActivity::class.java).apply {
+                        val intent1 = Intent(applicationContext, GraphicActivity2::class.java).apply {
                             putExtra("True",trueQuestion)
                             putExtra("False",falseQuestion)
                         }
                         startActivity(intent1)
+                        finish()
                     }
                 }
 
@@ -249,6 +250,7 @@ class TestActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 this.start()
+                falseQuestion++
             }
 
         }
@@ -483,7 +485,6 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
-                        showLongToast("Wrong")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -506,7 +507,6 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
-                        showLongToast("Yanlis")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -529,7 +529,6 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
-                        showLongToast("Yanlis")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -553,7 +552,6 @@ class TestActivity : AppCompatActivity() {
                         if (sound == 1){
                             mediaPlayerFalse!!.start()
                         }
-                        showLongToast("Yanlis")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -585,7 +583,6 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -614,7 +611,6 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -643,7 +639,6 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -672,7 +667,6 @@ class TestActivity : AppCompatActivity() {
                                 if (sound == 1) {
                                     mediaPlayerFalse!!.start()
                                 }
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -697,8 +691,8 @@ class TestActivity : AppCompatActivity() {
                         }
                         animation!!.end()
                         counter!!.cancel()
-                        count()
                         trueQuestion++
+                        count()
                         randomMethod()
                         numberText.text = ""
                     } else {
@@ -709,7 +703,6 @@ class TestActivity : AppCompatActivity() {
                         animation!!.end()
                         counter!!.cancel()
                         count()
-                        showLongToast("Yanlis")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -739,7 +732,7 @@ class TestActivity : AppCompatActivity() {
                         falseQuestion++
                         animation!!.end()
                         counter!!.cancel()
-                        showLongToast("Yanlis")
+                        count()
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -770,7 +763,6 @@ class TestActivity : AppCompatActivity() {
                         animation!!.end()
                         counter!!.cancel()
                         count()
-                        showLongToast("Yanlis")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -802,7 +794,6 @@ class TestActivity : AppCompatActivity() {
                         animation!!.end()
                         counter!!.cancel()
                         count()
-                        showLongToast("Yanlis")
                         if (vib == 1) {
                             vibrator!!.vibrate(100)
                         }
@@ -849,7 +840,6 @@ class TestActivity : AppCompatActivity() {
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -893,7 +883,6 @@ class TestActivity : AppCompatActivity() {
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -937,7 +926,6 @@ class TestActivity : AppCompatActivity() {
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
@@ -980,7 +968,6 @@ class TestActivity : AppCompatActivity() {
                                 animation!!.end()
                                 counter!!.cancel()
                                 count()
-                                showLongToast("Yanlis")
                                 if (vib == 1) {
                                     vibrator!!.vibrate(100)
                                 }
