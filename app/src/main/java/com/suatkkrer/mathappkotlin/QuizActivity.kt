@@ -81,4 +81,10 @@ class QuizActivity : AppCompatActivity() {
     fun showLongToast(msg: String?) {
         Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
     }
+
+    fun backback(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
